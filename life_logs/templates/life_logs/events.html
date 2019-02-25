@@ -1,0 +1,16 @@
+{% extends "life_logs/base.html" %}
+
+{% block content %}
+    
+    <ul>
+        {% for event in events  %}
+            <li>
+                <a href="{% url 'life_logs:entry' event.id %}"> {{event}} </a>
+            </li>
+        {%empty%}
+            <li>No topics have been added yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{%url 'life_logs:new_event'%}">Add a new event.</a>
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "life_logs/base.html" %}
+
+{% block content %}
+    <p>Add a new Topic:</p>
+    <form action="{% url 'life_logs:new_event' %}" method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <button name='submit'>Add Event</button>
+    </form>
+
+
+{% endblock content %}
