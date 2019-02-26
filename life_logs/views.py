@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Event, Entry
-from .forms import EventForm
+from .forms import EventForm, EntryForm
 
 # Create your views here.
 def index(request):
@@ -22,6 +22,7 @@ def entry(request, pk):
     context = {'event':entry, 'entries':entries}
     return render(request, 'life_logs/entry.html', context=context)
 
+
 def new_event(request):
     """Add a new event"""
     if request.method != "POST":
@@ -29,10 +30,28 @@ def new_event(request):
         form = EventForm()
     else:
         # POST data submitted; process data
-        form = EventForm()
+        form = EventForm(data=request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('life_logs:events'))
     context = {'form':form}
     return render(request, 'life_logs/new_event.html', context)
 
+
+def new_entry(request, event_id):
+    """Add a new Entry"""
+    event = Event.objects.get(id=event_id)
+
+    if request.method != 'POST':
+        # No data submitted; create a blank form.
+        form = EntryForm()
+    else:
+        # POST data submitted; process data.
+        form = EntryForm(data=request.POST)
+        if form.is_valid():
+            new_entry = form.save(commit=False)
+            new_entry.event = event
+            new_entry.save()
+            return HttpResponseRedirect(reverse('life_logs:events', args=(event.id,)))
+    context = {'event':event, 'form':form}
+    return render(request, 'life_logs/new_entry.html', context)

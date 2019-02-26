@@ -2,6 +2,8 @@
 
 {% block content %}
     
+    <p> Events: </p>
+    
     <ul>
         {% for event in events  %}
             <li>
@@ -12,5 +14,6 @@
         {% endfor %}
     </ul>
     <a href="{%url 'life_logs:new_event'%}">Add a new event.</a>
+
 
 {% endblock content %}

@@ -14,4 +14,7 @@ urlpatterns = [
 
     # Page for adding new Events. 
     path('new_event/', views.new_event, name='new_event'),
+
+    # page for new entries.
+    path('new_entry/<int:event_id>/', views.new_entry, name='new_entry'),
 ]

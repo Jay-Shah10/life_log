@@ -1,0 +1,13 @@
+{% extends "life_logs/base.html" %}
+
+{% block content %}
+    <p><a href="{% url 'life_logs:events' event.id %}">{{topic}} </a></p>
+
+    <p>Add a new Entry:</p>
+    <form action="{% url 'life_logs:new_entry' event.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit"> add entry </button>
+    </form>
+
+{% endblock content %}

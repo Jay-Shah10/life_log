@@ -3,6 +3,9 @@
 {% block content %}
     <p> Event: {{ event }} </p>
     <p> Entries:</p>
+     <p>
+        <a href="{% url 'life_logs:new_entry' event.id %}">Add new entry</a>
+    </p>
     <ul>
         {% for entry in entries  %}
             <li>
