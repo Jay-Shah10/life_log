@@ -15,12 +15,12 @@ def events(request):
     context = {'events':events}
     return render(request, 'life_logs/events.html', context=context)
 
-def entry(request, pk):
+def topic(request, pk):
     """ Get individual Entries based on the Event. """
-    entry = Event.objects.get(id=pk)
-    entries = entry.entry_set.order_by('-date_added')
-    context = {'event':entry, 'entries':entries}
-    return render(request, 'life_logs/entry.html', context=context)
+    topic = Event.objects.get(id=pk)
+    entries = topic.entry_set.order_by('-date_added')
+    context = {'event': topic, 'entries':entries}
+    return render(request, 'life_logs/topic.html', context=context)
 
 
 def new_event(request):
@@ -37,21 +37,20 @@ def new_event(request):
     context = {'form':form}
     return render(request, 'life_logs/new_event.html', context)
 
-
 def new_entry(request, event_id):
-    """Add a new Entry"""
+    """Add new Entry for an Event"""
     event = Event.objects.get(id=event_id)
 
-    if request.method != 'POST':
+    if request.method != "POST":
         # No data submitted; create a blank form.
         form = EntryForm()
     else:
-        # POST data submitted; process data.
+        # POST data submitted; process data. 
         form = EntryForm(data=request.POST)
         if form.is_valid():
-            new_entry = form.save(commit=False)
-            new_entry.event = event
-            new_entry.save()
-            return HttpResponseRedirect(reverse('life_logs:events', args=(event.id,)))
+            new_entry = form.save(commit=False) # saves it the post, but does not commit to the database.
+            new_entry.event = event # links the post the event it is related to. 
+            new_entry.save() # Now we save the post. 
+            return HttpResponseRedirect(reverse('life_logs:topic', args=[event_id])) # shows the individual topic page with entries.
     context = {'event':event, 'form':form}
-    return render(request, 'life_logs/new_entry.html', context)
+    return render(request, 'life_logs/new_entry.html', context)  # render the new_entry page. 
