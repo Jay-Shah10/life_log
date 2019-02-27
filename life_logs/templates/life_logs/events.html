@@ -7,7 +7,7 @@
     <ul>
         {% for event in events  %}
             <li>
-                <a href="{% url 'life_logs:entry' event.id %}"> {{event}} </a>
+                <a href="{% url 'life_logs:topic' event.id %}"> {{event}} </a>
             </li>
         {%empty%}
             <li>No topics have been added yet.</li>
