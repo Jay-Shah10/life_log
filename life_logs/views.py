@@ -40,7 +40,6 @@ def new_event(request):
 def new_entry(request, event_id):
     """Add new Entry for an Event"""
     event = Event.objects.get(id=event_id)
-
     if request.method != "POST":
         # No data submitted; create a blank form.
         form = EntryForm()
