@@ -10,7 +10,7 @@ urlpatterns = [
     path('events/', views.events, name='events'),
 
     # Show an individual entry for an event. 
-    path('events/<int:pk>/', views.entry, name='entry'),
+    path('events/<int:pk>/', views.topic, name='topic'),
 
     # Page for adding new Events. 
     path('new_event/', views.new_event, name='new_event'),
