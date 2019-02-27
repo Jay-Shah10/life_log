@@ -1,7 +1,7 @@
 {% extends "life_logs/base.html" %}
 
 {% block content %}
-    <p><a href="{% url 'life_logs:events' event.id %}">{{topic}} </a></p>
+    <p><a href="{% url 'life_logs:topic' event.id %}">{{ event }} </a></p>
 
     <p>Add a new Entry:</p>
     <form action="{% url 'life_logs:new_entry' event.id %}" method='post'>
