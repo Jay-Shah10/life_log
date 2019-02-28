@@ -17,4 +17,7 @@ urlpatterns = [
 
     # page for new entries.
     path('new_entry/<int:event_id>/', views.new_entry, name='new_entry'),
+
+    # To edit entry.
+    path("edit_entry/<int:entry_id>/", views.edit_entry, name='edit_entry'),
 ]
