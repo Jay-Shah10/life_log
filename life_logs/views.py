@@ -72,3 +72,14 @@ def edit_entry(request, entry_id):
 
     context = {'entry':entry, 'topic':topic, 'form':form}
     return render(request, 'life_logs/edit_entry.html', context=context)
+
+
+def delete_entry(request, entry_id):
+    """Delete an exisiting entry"""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.event
+    entry.delete()
+
+    return HttpResponseRedirect(reverse('life_logs:topic', args=[topic.id]))
+    
+
