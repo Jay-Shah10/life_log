@@ -53,3 +53,22 @@ def new_entry(request, event_id):
             return HttpResponseRedirect(reverse('life_logs:topic', args=[event_id])) # shows the individual topic page with entries.
     context = {'event':event, 'form':form}
     return render(request, 'life_logs/new_entry.html', context)  # render the new_entry page. 
+
+
+def edit_entry(request, entry_id):
+    """Edit an exisiting entry."""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.event # gets the topic associated with the entry. 
+
+    if request.method != "POST":
+        # Initial request; pre-fill form with the current entry.
+        form = EntryForm(instance=entry)
+    else:
+        # Post data submitted; process data. 
+        form = EntryForm(instance=entry, data=request.POST) # teslls Django to create a form with the updated data from request.post.
+        if form.is_valid(): # should be valid.
+            form.save() # save info. 
+            return HttpResponseRedirect(reverse('life_logs:topic', args=[topic.id])) # takes the user back to the topic page. 
+
+    context = {'entry':entry, 'topic':topic, 'form':form}
+    return render(request, 'life_logs/edit_entry.html', context=context)
