@@ -14,6 +14,11 @@
                 <p> 
                     <a href="{% url 'life_logs:edit_entry' entry.id %}">edit entry</a>
                 </p>
+                {% comment %} This is using inline javascript. Best practice is to have it in another file. {% endcomment %}
+                <p>
+                    <a href="{% url 'life_logs:delete_entry' entry.id %}" onclick="return confirm('Are you sure?')">delete entry</a>
+                </p>
+                <br>
             </li>
         {%empty%}
             <li>
