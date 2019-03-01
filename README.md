@@ -46,5 +46,8 @@ Once the environment is running navigate into the life_log and find "manage.py" 
 ```
 python manage.py runserver.  
 ```
+Copy and paste the IP address that gets displayed in your browser.  
+You shoul see a home page with a list of differetn life events.  
+
 
 
