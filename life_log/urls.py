@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     #adding life_logs urls.py.
-    path('', include('life_logs.urls')),
+    path('', include('life_logs.urls', namespace='life_logs')),
+    path('user/', include('user.urls', namespace='user'))
 ]
