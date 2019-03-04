@@ -10,9 +10,15 @@
     <p>
         <a href="{% url 'life_logs:index' %}"> Life Log</a> -
         <a href="{% url 'life_logs:events' %}">Events</a>
+        {% if user.is_authenticated %}
+            Hello, {{ user.username }}.
+            <a href="{% url 'user:logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'user:login' %}">Login</a>
+        {% endif %}
     </p>
     {% block content  %}
 
-    {% endblock content  %}
+    {% endblock  %}
 </body>
 </html>
