@@ -1,0 +1,18 @@
+{% extends "life_logs/base.html" %}
+
+{% block content %}
+    {% if form.errors %}
+        <p>Your Username and password didn't match. Please try agin.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'user:login' %}" >
+        {% csrf_token %}
+        {{ form }}
+    
+        <button name="submit">Log in</button>
+        {% comment %} <input type="hidden" name="next" value="{% templatetag openblock %}  extends  'life_logs:index'  {% templatetag closeblock %}"/> {% endcomment %}
+        <input type="hidden" name="next" value=" {% extends 'life_logs:index' %}>
+
+    </form>
+
+{% endblock %}
