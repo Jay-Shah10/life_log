@@ -24,8 +24,4 @@ urlpatterns = [
 
     # To delete entry.
     path('delete_entry/<int:entry_id>/', views.delete_entry, name='delete_entry'),
-
-    # To log in.
-    path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login' ),
-    
 ]
