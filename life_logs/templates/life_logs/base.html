@@ -10,15 +10,22 @@
     <p>
         <a href="{% url 'life_logs:index' %}"> Life Log</a> -
         <a href="{% url 'life_logs:events' %}">Events</a>
+        <br>
+        <br>
         {% if user.is_authenticated %}
             Hello, {{ user.username }}.
-            <a href="{% url 'user:logout' %}">Logout</a>
+            <br>
         {% else %}
             <a href="{% url 'user:login' %}">Login</a>
+            <a href="{% url 'user:register' %}">Register</a>
+            <br>
         {% endif %}
     </p>
     {% block content  %}
 
     {% endblock  %}
+    <br>
+    <br>
+    <a href="{% url 'user:logout' %}">Logout</a>
 </body>
 </html>
