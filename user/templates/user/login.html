@@ -10,8 +10,9 @@
         {{ form }}
     
         <button name="submit">Log in</button>
+        <input type="hidden" name="next" value="{% url 'life_logs:index' %}"/>
         {% comment %} <input type="hidden" name="next" value="{% templatetag openblock %}  extends  'life_logs:index'  {% templatetag closeblock %}"/> {% endcomment %}
-        <input type="hidden" name="next" value=" {% extends 'life_logs:index' %}>
+        {% comment %} <input type="hidden" name="next" value=" {% extends 'life_logs:index' %}"> {% endcomment %}
 
     </form>
 
