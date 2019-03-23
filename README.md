@@ -18,12 +18,15 @@ virtualenv
 Download virutalenv after installing python.   
 ```
 pip install virtualenv
-
-For windows:
-python -m venv <name of env>
-<name of env>\Script\activate
 ```
-
+For Window:  
+```
+python -m venv <name_of_env>
+```
+Activate:  
+```
+<name_of_env>\Scripts\activate
+```
 
 ### How to
 You can clone this repository.
