@@ -19,6 +19,14 @@ Download virutalenv after installing python.
 ```
 pip install virtualenv
 ```
+
+### How to
+
+Download virtualenv after installing Python.
+```
+pip install virtualenv
+```
+How to set up a new environment.  
 For Window:  
 ```
 python -m venv <name_of_env>
@@ -27,14 +35,12 @@ Activate:
 ```
 <name_of_env>\Scripts\activate
 ```
-
-### How to
+After your virtualenv is set up.  
 You can clone this repository.
 ```
 git clone
 ```
 or you can remote add this repos in your local dir.
-
 ```
 git remote add origin <url>
 ```
